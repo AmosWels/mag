@@ -15,7 +15,7 @@ const DocsLink = props => {
           rel="noopener noreferrer"
         >
           <MDBIcon icon="graduation-cap" className="mr-2" />
-          Docs
+          M&G
         </a>
       </MDBRow>
       <hr className="mb-5" />

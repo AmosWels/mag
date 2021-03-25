@@ -23,7 +23,10 @@ import BadgePage from "./pages/BadgePage";
 import BreadcrumbPage from "./pages/BreadcrumbPage";
 import FaPage from "./pages/FaPage";
 import DatatablePage from "./pages/DatatablePage";
-import DatatableApiPage from "./pages/DatatableApiPage";
+import DashBoard from "./pages/DashBoard";
+import NewStudents from "./pages/NewStudents";
+import ActiveStudents from "./pages/ActiveStudents";
+import InactiveStudents from "./pages/InactiveStudents";
 import ModalPage from "./pages/ModalPage";
 import ModalFormPage from "./pages/ModalFormPage";
 import ModalExamplesPage from "./pages/ModalExamplesPage";
@@ -50,7 +53,7 @@ import SearchPage from "./pages/SearchPage";
 import ValidationPage from "./pages/ValidationPage";
 import NavbarPage from "./pages/NavbarPage";
 import IframePage from "./pages/IframePage";
-import EdgeHeaderPage from "./pages/EdgeHeaderPage"
+import LoginPage from "./pages/LoginPage"
 import SpinnerPage from './pages/SpinnerPage';
 import MasonryPage from './pages/MasonryPage';
 import ScrollBarPage from './pages/ScrollBarPage';
@@ -65,7 +68,14 @@ class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/about" component={HomePage} />
+        <Route exact path="/dashboard" component={DashBoard} />
+        <Route exact path="/new" component={NewStudents} />
+        <Route exact path="/inactive" component={InactiveStudents} />
+        <Route exact path="/active" component={ActiveStudents} />
+        <Route exact path="/search" component={SearchPage} />
+        <Route path="/" component={LoginPage} />
+
         <Route exact path="/addons" component={AddonsNavPage} />
         <Route exact path="/advanced" component={AdvancedNavPage} />
         <Route exact path="/components" component={ComponentsNavPage} />
@@ -77,7 +87,6 @@ class Routes extends React.Component {
 
         {/* FREE */}
         <Route path="/addons/iframe" component={IframePage} />
-        <Route path="/addons/edge-header" component={EdgeHeaderPage} />
         <Route path="/addons/notifications" component={NotificationPage} />
         <Route path="/advanced/carousel" component={CarouselPage} />
         <Route path="/advanced/collapse" component={CollapsePage} />
@@ -122,7 +131,6 @@ class Routes extends React.Component {
         <Route path="/tables/table-responsive" component={TableResponsivePage} />
         <Route path="/tables/table-scroll" component={TableScrollPage} />
         <Route path="/tables/table-styles" component={TableStylesPage} />
-        <Route path="/tables/datatable-api" component={DatatableApiPage} />
         <Route path="/tables/datatable" component={DatatablePage} />
         
         <Route
