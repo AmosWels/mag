@@ -48,7 +48,7 @@ class LoginPage extends Component {
                 className="text-left mx-auto float-none white z-depth-1 py-2 px-2"
               >
                 <MDBCardBody>
-                  <MDBCardTitle>Login Page 1 </MDBCardTitle>
+                  <MDBCardTitle>Login Page</MDBCardTitle>
                   <p className="pb-4">
                     Only authorised users can view the data
                     <MDBNavLink
