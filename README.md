@@ -1,6 +1,12 @@
 # mag
 monitoring and growth
 
+Checkout App [here](https://magg-e58c5.web.app/)
+
+or click here https://magg-e58c5.web.app/
+
+This project uses github Actions for CI/CD
+
 # React Bootstrap with Material Design
 MDBootstrap for React
 
