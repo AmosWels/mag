@@ -50,7 +50,7 @@ class LoginPage extends Component {
                 <MDBCardBody>
                   <MDBCardTitle>Login Page</MDBCardTitle>
                   <p className="pb-4">
-                    Only authorised users can view the data
+                    Only authorised users can view the data.
                     <MDBNavLink
                       tag="button"
                       to="/about"
