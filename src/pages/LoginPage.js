@@ -46,7 +46,7 @@ class LoginPage extends Component {
     await Axios.post(apiUrl, objValues, config)
       .then(res => {
         this.toggleLoader()
-        console.log("resp", res);
+        console.log("resp>", res);
         if (
           res.data.Status === "OK"
         ) {
