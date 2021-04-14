@@ -49,7 +49,7 @@ class App extends Component {
           <MDBFooter color="indigo">
             <p className="footer-copyright mb-0 py-3 text-center">
               &copy; {new Date().getFullYear()} Copyright:
-              <a href="#"> M&G </a>
+              <a href="#"> PPF </a>
             </p>
           </MDBFooter>
         </div>
