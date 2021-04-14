@@ -8,7 +8,7 @@ const DatatablePage = () => {
     console.log(param);
   }
 
-  const data = () => ({
+  const data = {
     columns: [
       {
         label: "Name",
@@ -507,12 +507,11 @@ const DatatablePage = () => {
         salary: "$112"
       }
     ]
-  });
+  };
 
   return (
     <MDBContainer className="mt-3">
       <DocsLink title="Datatable" href="https://mdbootstrap.com/docs/react/tables/datatables/" />
-
       <MDBRow className="py-3">
         <MDBCol md="12">
           <SectionContainer title="Basic example" noBorder>
@@ -525,128 +524,8 @@ const DatatablePage = () => {
                   entriesOptions={[5, 20, 25]}
                   entries={5}
                   pagesAmount={4}
-                  data={new data()}
+                  data={data}
                 />
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer title="Without info" noBorder>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBDataTable striped bordered hover info={false} data={new data()} />
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer title="Without sorting" noBorder>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBDataTable striped bordered hover sortable={false} data={new data()} />
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer title="Initial order" noBorder>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBDataTable striped bordered hover order={["age", "desc"]} data={new data()} />
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer title="Without searching" noBorder>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBDataTable striped bordered hover searching={false} data={new data()} />
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer title="Bars positioning" noBorder>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBDataTable barReverse striped bordered hover data={new data()} />
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer title="With scrollY property" noBorder>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBDataTable striped bordered hover scrollY maxHeight="300px" data={new data()} />
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer title="ScrollY dynamic height" noBorder>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBDataTable striped bordered hover scrollY maxHeight="50vh" data={new data()} />
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer title="With scrollX property" noBorder>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBDataTable striped bordered hover scrollX data={new data()} />
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer title="With scrollX and scrollY properties" noBorder>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBDataTable striped bordered hover scrollX scrollY maxHeight="300xp" data={new data()} />
-              </MDBCardBody>
-            </MDBCard>
-          </SectionContainer>
-        </MDBCol>
-      </MDBRow>
-
-      <MDBRow className="py-3">
-        <MDBCol md="12">
-          <SectionContainer title="Without pagination" noBorder>
-            <MDBCard>
-              <MDBCardBody>
-                <MDBDataTable striped bordered hover paging={false} data={new data()} />
               </MDBCardBody>
             </MDBCard>
           </SectionContainer>

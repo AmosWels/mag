@@ -17,10 +17,7 @@ import {
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBTabPane, 
-  MDBTabContent, MDBNav, MDBNavItem, 
-  MDBNavLink
+  MDBDropdownItem
 } from "mdbreact";
 import Axios from "axios";
 import DocsLink from "../components/docsLink";
@@ -37,7 +34,7 @@ function testClickEvent(param) {
 // data for table
 
 // class NewStudents extends Component {
-const InactiveStudents = () => {
+const PendingStudents = () => {
   let history = useHistory();
   const props = history;
   // const [selectedValue, setSelectedValue] = React.useState({modal4: false});
@@ -60,7 +57,6 @@ const InactiveStudents = () => {
     editcomment:"",
   });
   const [tableData, setTableData] = useState("");
-  const [activeItem, setActiveItem] = React.useState("1")
   const [loader, setLoader] = useState(false);
   const [addStudentloader, setStudentLoader] = useState(false);
   const [editStudentloader, setEditStudentLoader] = useState(false);
@@ -81,7 +77,7 @@ const InactiveStudents = () => {
     classs: "",
     joiningdate: "",
     active: "",
-    state: "ACTIVE",
+    state: "PENDING",
     createdby:"",
   });
   // console.log("student", student)
@@ -109,7 +105,7 @@ const InactiveStudents = () => {
         Click
       </MDBDropdownToggle>
       <MDBDropdownMenu basic color="info">
-        {/* <MDBDropdownItem onClick={()=>{setEditModal(!editModal);setEditValues({
+        <MDBDropdownItem onClick={()=>{setEditModal(!editModal);setEditValues({
           editName,
           id,
           editcreatedby,
@@ -123,7 +119,7 @@ const InactiveStudents = () => {
           editState,
           editClasss,
           editJoiningdate,
-          editActive})}}>Edit</MDBDropdownItem> */}
+          editActive})}}>Edit</MDBDropdownItem>
         <MDBDropdownItem onClick={()=>{setActivateModal(true);setEditValues({
           editName,
           id,
@@ -174,45 +170,50 @@ const InactiveStudents = () => {
     editcomment,
   } = editValues;
 
-  const deactivateStudentloader =
-    editcomment === "" || editStudentloader === true || editState === "DROPPED" || editState === "" ||
-                    editState === "DISCONTINUED" || editState === "COMPLETED";
+  const addStudentBoolean =
+    name === "" ||
+    school === "" ||
+    status === "" ||
+    course === "" ||
+    dateofbirth === "" ||
+    fees === "" ||
+    classs === "" ||
+    joiningdate === "" ||
+    active === "" ||
+    addStudentloader === true;
   // console.log("addStudentBoolean", addStudentBoolean)
   // console.log("student", student)
   // console.log("editValues", editValues)
   // console.log("data >>", Object.values(tableData))
   const tableDataValue =
     Object.values(tableData).length === 0 ? [] : Object.values(tableData);
-
-  const completedTable = tableDataValue
-    .filter(value => value.state === "COMPLETED")
-    .map(({name,school,filenumber,dateofbirth,classs,joiningdate,active,
-        fees,course,state,createdby,comment,editedby,createdAt,updatedAt,
-        __v,_id,status,// ...rest
+  const resultTable = tableDataValue
+    .filter(value => value.state === "PENDING")
+    .map(
+      ({
+        name,
+        school,
+        filenumber,
+        dateofbirth,
+        classs,
+        joiningdate,
+        active,
+        fees,
+        course,
+        state,
+        createdby,
+        comment,
+        editedby,
+        createdAt,
+        updatedAt,
+        __v,
+        _id,
+        status,
+        // ...rest
       }) => ({ name,school,filenumber,dateofbirth, classs,joiningdate, 
         action: actionBtn({"editName":name, "editSchool":school, "editFileNumber":filenumber, "editDateofbirth":dateofbirth, "editClasss":classs, "editJoiningdate":joiningdate, 
         "editActive":active, "editFees":fees, "editCourse":course, "editState":state, "editStatus":status, "id":_id, "editcreatedby":createdby, "editcomment":comment})})
     );
-  const discontinuedTable = tableDataValue
-    .filter(value => value.state === "DISCONTINUED")
-    .map(({name,school,filenumber,dateofbirth,classs,joiningdate,active,
-        fees,course,state,createdby,comment,editedby,createdAt,updatedAt,
-        __v,_id,status,// ...rest
-      }) => ({ name,school,filenumber,dateofbirth, classs,joiningdate, 
-        action: actionBtn({"editName":name, "editSchool":school, "editFileNumber":filenumber, "editDateofbirth":dateofbirth, "editClasss":classs, "editJoiningdate":joiningdate, 
-        "editActive":active, "editFees":fees, "editCourse":course, "editState":state, "editStatus":status, "id":_id, "editcreatedby":createdby, "editcomment":comment})})
-    );
-  const droppedTable = tableDataValue
-    .filter(value => value.state === "DROPPED")
-    .map(({name,school,filenumber,dateofbirth,classs,joiningdate,active,
-        fees,course,state,createdby,comment,editedby,createdAt,updatedAt,
-        __v,_id,status,// ...rest
-      }) => ({ name,school,filenumber,dateofbirth, classs,joiningdate, 
-        action: actionBtn({"editName":name, "editSchool":school, "editFileNumber":filenumber, "editDateofbirth":dateofbirth, "editClasss":classs, "editJoiningdate":joiningdate, 
-        "editActive":active, "editFees":fees, "editCourse":course, "editState":state, "editStatus":status, "id":_id, "editcreatedby":createdby, "editcomment":comment})})
-    );
-  const resultTable = activeItem === "1"? completedTable : 
-                      activeItem === "2"? droppedTable : discontinuedTable;
   // console.log("result", resultTable);
   // console.log("tableDataValue", tableDataValue);
   const data = {
@@ -353,12 +354,6 @@ const InactiveStudents = () => {
     setfileNumber(uniqueStudentID());
   };
 
-  const toggleTab = tab => e => {
-    if (activeItem !== tab) {
-      setActiveItem(tab);
-    }
-  };
-
   const editToggle = () => {
     setEditModal(!editModal);
   };
@@ -474,7 +469,7 @@ const InactiveStudents = () => {
       "createdby":editcreatedby,
       "editedby":editedby,
       "comment":editcomment,
-      "state":"ACTIVE"
+      "state":"PENDING"
     };
     await Axios.put(apiUrl, objValues, config)
       .then(res => {
@@ -507,7 +502,7 @@ const InactiveStudents = () => {
       });
   };
 // activate student
-  const handleDeactivate = async values => {
+  const handleActivate = async values => {
     setEditStudentLoader(true);
     const config = {
       headers: authHeader()
@@ -529,7 +524,7 @@ const InactiveStudents = () => {
       "createdby":editcreatedby,
       "editedby":editedby,
       "comment":editcomment,
-      "state":editState
+      "state":"ACTIVE"
     };
     await Axios.put(apiUrl, objValues, config)
       .then(res => {
@@ -607,7 +602,10 @@ const InactiveStudents = () => {
     <div className="flyout">
       <TopBar props={props} />
       <MDBContainer className="mt-3">
-      <DocsLink title="Inactive Students" href="https://mdbootstrap.com/docs/react/components/tabs/" />
+        <DocsLink
+          title="Pending Students"
+          href="https://mdbootstrap.com/docs/react/tables/datatables/"
+        />
         {error ? (
           <MDBAlert color="danger" dismiss>
             Unable to fetch students now, ensure that you have good network or
@@ -641,44 +639,13 @@ const InactiveStudents = () => {
         ) : (
           <MDBRow className="py-3">
             <MDBCol md="12">
-              <SectionContainer header="Inactive Students" noBorder>
-              <MDBNav className="nav-tabs">
-                  <MDBNavItem>
-                    <MDBNavLink
-                      to="#"
-                      active={activeItem === "1"}
-                      onClick={toggleTab("1")}
-                      role="tab"
-                    >
-                      Completed
-                    </MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink
-                      to="#"
-                      active={activeItem === "2"}
-                      onClick={toggleTab("2")}
-                      role="tab"
-                    >
-                      Dropped Out
-                    </MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink
-                      to="#"
-                      active={activeItem === "3"}
-                      onClick={toggleTab("3")}
-                      role="tab"
-                    >
-                      Discontinued
-                    </MDBNavLink>
-                  </MDBNavItem>
-                </MDBNav>
-                <MDBTabContent activeItem={activeItem}>
-                  <MDBTabPane tabId="1" role="tabpanel">
-                    <p className="mt-2">
-                  <SectionContainer header="Completed Students Table" noBorder>
-                  <MDBDataTable
+              <SectionContainer header="Pending Students Table" noBorder>
+                <MDBCard>
+                  <MDBCardBody>
+                    <MDBBtn rounded onClick={toggle}>
+                      Add New Student
+                    </MDBBtn>
+                    <MDBDataTable
                       striped
                       bordered
                       hover
@@ -687,46 +654,206 @@ const InactiveStudents = () => {
                       pagesAmount={4}
                       data={data}
                     />
-                    </SectionContainer>
-                    </p>
-                  </MDBTabPane>
-                  <MDBTabPane tabId="2" role="tabpanel">
-                  <p className="mt-2">
-                  <SectionContainer header="Dropped Out Students Table" noBorder>
-                  <MDBDataTable
-                      striped
-                      bordered
-                      hover
-                      entriesOptions={[5, 10, 25, 50, 100]}
-                      entries={5}
-                      pagesAmount={4}
-                      data={data}
-                    />
-                    </SectionContainer>
-                    </p>
-                  </MDBTabPane>
-                  <MDBTabPane tabId="3" role="tabpanel">
-                  <p className="mt-2">
-                  <SectionContainer header="Discontinued Students Table" noBorder>
-                  <MDBDataTable
-                      striped
-                      bordered
-                      hover
-                      entriesOptions={[5, 10, 25, 50, 100]}
-                      entries={5}
-                      pagesAmount={4}
-                      data={data}
-                    />
-                    </SectionContainer>
-                    </p>
-                  </MDBTabPane>
-                </MDBTabContent>
+                  </MDBCardBody>
+                </MDBCard>
               </SectionContainer>
             </MDBCol>
           </MDBRow>
         )}
       </MDBContainer>
       <SectionContainer flexCenter>
+        <MDBModal isOpen={modal} toggle={toggle}>
+          <MDBModalHeader
+            className="text-center"
+            titleClass="w-80 font-weight-bold"
+            toggle={toggle}
+          >
+            Add New Student{" "}
+            <span className="footer-copyright w-100 font-weight-bold">
+              ID : {fileNumber}
+            </span>
+          </MDBModalHeader>
+          <MDBModalBody>
+            <form className="mx-8 grey-text" onSubmit={handleCreate}>
+              <div className="form-group row">
+                <label
+                  htmlFor="inputEmdail3"
+                  className="col-sm-2 col-form-label"
+                >
+                  Name
+                </label>
+                <div className="col-sm-10">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEma3"
+                    placeholder="Name"
+                    name="name"
+                    required
+                    onChange={changeHandler}
+                  />
+                </div>
+              </div>
+              <div className="form-group row">
+                <label
+                  htmlFor="inputEmail3"
+                  className="col-sm-2 col-form-label"
+                >
+                  School
+                </label>
+                <div className="col-sm-10">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEma"
+                    placeholder="School / Institution (Previous / Current)"
+                    onChange={changeHandler}
+                    name="school"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-group row">
+                <label
+                  htmlFor="inputEmail3"
+                  className="col-sm-2 col-form-label"
+                >
+                  Status
+                </label>
+                <div className="col-sm-10">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmailf3"
+                    placeholder="Current status /Proffesion /Address"
+                    onChange={changeHandler}
+                    name="status"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-group row">
+                <label
+                  htmlFor="inputEmail3"
+                  className="col-sm-2 col-form-label"
+                >
+                  Course
+                </label>
+                <div className="col-sm-10">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmailf3"
+                    placeholder="Course / Proffession Taken"
+                    onChange={changeHandler}
+                    name="course"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group col-md-6">
+                  <label htmlFor="inputEmail4">File Number</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    placeholder="File Number"
+                    onChange={changeHandler}
+                    name="filenumber"
+                    disabled
+                    value={fileNumber}
+                  />
+                </div>
+                <div className="form-group col-md-6">
+                  <label htmlFor="inputPassword4">Date of Birth</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    id="inputEmail4"
+                    placeholder="Date of Birth"
+                    onChange={changeHandler}
+                    name="dateofbirth"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group col-md-6">
+                  <label htmlFor="inputEmail4">Semister / term Fees</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="inputEmail4"
+                    placeholder="Semister / term Fees"
+                    onChange={changeHandler}
+                    name="fees"
+                    required
+                  />
+                </div>
+                <div className="form-group col-md-6">
+                  <label htmlFor="inputPassword4">Current Class</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputPassword4"
+                    placeholder="Current Class"
+                    onChange={changeHandler}
+                    name="classs"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group col-md-6">
+                  <label htmlFor="inputEmail4">Joining date</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    id="inputEmail4"
+                    placeholder="Joining date"
+                    onChange={changeHandler}
+                    name="joiningdate"
+                    required
+                  />
+                </div>
+                <div className="form-group col-md-6">
+                  <label htmlFor="inputEmail4">
+                    Specify Student Activation
+                  </label>
+                  <select
+                    onChange={changeHandler}
+                    name="active"
+                    className="custom-select bMDBRowser-default form-control"
+                    required
+                  >
+                    <option value="">Choose Active status</option>
+                    <option value="Active">Yes</option>
+                    <option value="Inactive">No</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </MDBModalBody>
+          <MDBModalFooter className="justify-content-center">
+            <MDBBtn
+              color="primary"
+              onClick={handleCreate}
+              disabled={addStudentBoolean}
+            >
+              Submit
+              <MDBIcon icon="paper-plane" className="ml-2" />
+            </MDBBtn>
+            {addStudentloader ? (
+              <div className="spinner-grow" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
+            ) : null}
+          </MDBModalFooter>
+        </MDBModal>
+      {/* </SectionContainer> */}
+      {/* start of edit modal */}
       {/* <SectionContainer flexCenter> */}
         <MDBModal isOpen={editModal} toggle={editToggle}>
           <MDBModalHeader
@@ -734,7 +861,7 @@ const InactiveStudents = () => {
             titleClass="w-80 font-weight-bold"
             toggle={editToggle}
           >
-            Edit Active Student{" "}
+            Edit Student{" "}
             <span className="footer-copyright w-100 font-weight-bold">
               ID : {editFileNumber}
             </span>
@@ -936,47 +1063,13 @@ const InactiveStudents = () => {
           >
             <MDBModalHeader toggle={toggleActivatemodal}>Activate Student</MDBModalHeader>
             <MDBModalBody>
-            <form className="mx-8" onSubmit={handleDeactivate}>
-            <p>Are you sure that you want to <b>Activate</b> student with name <strong>{editName}</strong> and student Number <strong color="primary">{editFileNumber} {" ?"}</strong></p>
-              
-              <div className="form-row">
-                <div className="form-group col-md-12">
-                <label htmlFor="inputEmail4">
-                    Select Activation
-                  </label>
-                  <select
-                    onChange={editChangeHandler}
-                    name="editState"
-                    className="custom-select bMDBRowser-default form-control"
-                    required
-                    value={editState}
-                  >
-                    <option value="">Choose Activation Status</option>
-                    <option value="PENDING">Pending</option>
-                    <option value="ACTIVE">Activate</option>
-                  </select>
-                </div>
-                <div className="form-group col-md-12">
-                <label htmlFor="inputPassword4">Any reason or Comment for Activation</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="inputPassword4"
-                    placeholder="Add a Comment for Deactivation"
-                    onChange={editChangeHandler}
-                    name="editcomment"
-                    value={editcomment}
-                    required
-                  />
-                </div>
-              </div>
-              </form>
+              Are you sure that you want to <b>activate</b> student with name <strong>{editName}</strong> and student Number <strong color="primary">{editFileNumber} {" ?"}</strong>
             </MDBModalBody>
             <MDBModalFooter>
               <MDBBtn disabled={editStudentloader} color="secondary" onClick={toggleActivatemodal}>
                 No
               </MDBBtn>
-              <MDBBtn color="primary" disabled={deactivateStudentloader} onClick={handleDeactivate}>ACTIVATE</MDBBtn>
+              <MDBBtn color="primary" disabled={editStudentloader} onClick={handleActivate}>Activate</MDBBtn>
               {editStudentloader ? (
               <div className="spinner-grow" role="status">
                 <span className="sr-only">Loading...</span>
@@ -990,4 +1083,4 @@ const InactiveStudents = () => {
   // }
 };
 
-export default InactiveStudents;
+export default PendingStudents;

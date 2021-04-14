@@ -74,13 +74,16 @@ class HomePage extends React.Component {
             <MDBRow>
               <MDBCol md="12" className="mt-4">
                 <h2 className="text-center my-5 font-weight-bold">
-                <li>Why should you Partner?</li>
+                <li>Why should you Partner with us?</li>
                 </h2>
                 <p className="text-center text-muted mb-1">
-                <li>You have passion for the transfomation of the less priviledged.</li>
+                <li>You desire to have the fear of God amongst communities. </li>
                 </p>
                 <p className="text-center text-muted mb-1">
-                  <li>You desire to improve the general livelihoods of children</li>
+                <li>You have passion for the transformation of the less priviledged.</li>
+                </p>
+                <p className="text-center text-muted mb-1">
+                  <li>You desire to improve the general livelihood of Ugandan Citizens</li>
                 </p>
                 <p className="text-center text-muted">
                 <li>You love Uganda and would love to contribute to building a better future for Ugandans</li>
@@ -106,7 +109,7 @@ class HomePage extends React.Component {
                             <strong>Vision</strong>
                           </MDBCardTitle>
                           <MDBCardText>
-                          A Uganda in which all citizens have equal access to formal education, good health care and opportunityso as to assure improved livelihoods.
+                          A Uganda in which all citizens have equal access to formal education, good health care and opportunity so as to boost their faith in God and assure improved livelihood.
                           </MDBCardText>
                           <MDBNavLink 
                               tag="button"
@@ -135,7 +138,7 @@ class HomePage extends React.Component {
                             <strong>MISSION</strong>
                           </MDBCardTitle>
                           <MDBCardText>
-                            To identify, transform and serve individuals in the poorest communities in Uganda by impacting their ethical, moral and mental schools of thought.
+                            To identify, transform and serve individuals in the poorest communities in Uganda by impacting their ethical, moral and mental schools of thought with the Love of God.
                           </MDBCardText>
                           <MDBNavLink 
                               tag="button"
@@ -166,9 +169,9 @@ class HomePage extends React.Component {
                           <MDBCardText>
                             {/* <ul> */}
                             Love<br/>
+                            Faith<br/>
                             Integrity<br/>
                             Excellence<br/>
-                            Decency
                             {/* </ul> */}
                           </MDBCardText>
 

@@ -9,47 +9,61 @@ import {
   MDBNavLink,
   MDBBtn
 } from "mdbreact";
+import { useHistory } from 'react-router-dom';
 import { ReactComponent as Logo } from "../assets/logo.svg";
 
-class TopBar extends Component {
-  constructor(props) {
-    super(props)
-}
+// class TopBar extends Component {
+  const TopBar = (props) => {
+    // console.log('props', props)
+//   constructor(props) {
+//     super(props)
+// }
+let username;
+React.useEffect(() => {
+}, []);
 
-  state = {
-    collapseID: ""
-  };
+username = localStorage.getItem("username")
+// console.log('username', username)
 
-  onLogout = event => {
+  let history = useHistory();
+  // const props = history;
+const [state, setState] = React.useState({collapseID: ""});
+  // state = {
+  //   collapseID: ""
+  // };
+
+  const onLogout = event => {
     event.preventDefault();
-    const {history} = this.props.props;
+    // let {history} = props;
+    sessionStorage.clear();
+    localStorage.clear();
     history.push("/");
   };
-
-  toggleCollapse = collapseID => () =>
-    this.setState(prevState => ({
+  
+  const toggleCollapse = collapseID => () =>
+    setState(prevState => ({
       collapseID: prevState.collapseID !== collapseID ? collapseID : ""
     }));
 
-  closeCollapse = collapseID => () => {
+  const closeCollapse = collapseID => () => {
     window.scrollTo(0, 0);
-    this.state.collapseID === collapseID && this.setState({ collapseID: "" });
+    state === collapseID && setState({ collapseID: "" });
   };
   
 
-  render() {
+  // render() {
     return (
       <MDBNavbar color="indigo" dark expand="md" fixed="top" scrolling>
         <MDBNavbarBrand href="/dashboard" className="py-0 font-weight-bold">
           <Logo style={{ height: "2.5rem", width: "2.5rem" }} />
           <strong className="align-middle">
-            Monitoring & Growth Students Portal
+            Poor People's Foundation
           </strong>
         </MDBNavbarBrand>
-        <MDBNavbarToggler onClick={this.toggleCollapse("mainNavbarCollapse")} />
+        <MDBNavbarToggler onClick={toggleCollapse("mainNavbarCollapse")} />
         <MDBCollapse
           id="mainNavbarCollapse"
-          isOpen={this.state.collapseID}
+          isOpen={state.collapseID}
           navbar
         >
           <MDBNavbarNav right>
@@ -57,22 +71,22 @@ class TopBar extends Component {
               <MDBNavLink
                 exact
                 to="/dashboard"
-                onClick={this.closeCollapse("mainNavbarCollapse")}
+                onClick={closeCollapse("mainNavbarCollapse")}
               >
                 <strong>DashBoard</strong>
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink
-                to="/new"
-                onClick={this.closeCollapse("mainNavbarCollapse")}
+                to="/pending"
+                onClick={closeCollapse("mainNavbarCollapse")}
               >
-                <strong>New</strong>
+                <strong>Pending</strong>
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink
-                onClick={this.closeCollapse("mainNavbarCollapse")}
+                onClick={closeCollapse("mainNavbarCollapse")}
                 to="/active"
               >
                 <strong>Active</strong>
@@ -80,7 +94,7 @@ class TopBar extends Component {
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink
-                onClick={this.closeCollapse("mainNavbarCollapse")}
+                onClick={closeCollapse("mainNavbarCollapse")}
                 to="/inactive"
               >
                 <strong>Inactive</strong>
@@ -88,21 +102,28 @@ class TopBar extends Component {
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink
-                onClick={this.closeCollapse("mainNavbarCollapse")}
+                onClick={closeCollapse("mainNavbarCollapse")}
                 to="/search"
               >
                 <strong>Search</strong>
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
+            <MDBNavLink
+                to="#"
+              >
+                <em>Welcome <b>{username}</b></em>
+              </MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
             </MDBNavItem>
           </MDBNavbarNav>
-              <MDBBtn color="primary" onClick={this.onLogout}>
+              <MDBBtn color="primary" onClick={onLogout}>
                 Logout
               </MDBBtn>
         </MDBCollapse>
       </MDBNavbar>
     );
-  }
+  // }
 }
 export default TopBar;

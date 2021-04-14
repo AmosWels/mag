@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import {PrivateRoute} from './utils/privateRoute'
+// import {PrivateRoute} from './views/authServices/privateRoute'
 
 import NavigationNavPage from "./pages/NavigationNavPage";
 import FormsNavPage from "./pages/FormsNavPage";
@@ -24,7 +26,7 @@ import BreadcrumbPage from "./pages/BreadcrumbPage";
 import FaPage from "./pages/FaPage";
 import DatatablePage from "./pages/DatatablePage";
 import DashBoard from "./pages/DashBoard";
-import NewStudents from "./pages/NewStudents";
+import PendingStudents from "./pages/PendingStudents";
 import ActiveStudents from "./pages/ActiveStudents";
 import InactiveStudents from "./pages/InactiveStudents";
 import ModalPage from "./pages/ModalPage";
@@ -70,10 +72,10 @@ class Routes extends React.Component {
       <Switch>
         <Route exact path="/about" component={HomePage} />
         <Route exact path="/dashboard" component={DashBoard} />
-        <Route exact path="/new" component={NewStudents} />
-        <Route exact path="/inactive" component={InactiveStudents} />
-        <Route exact path="/active" component={ActiveStudents} />
-        <Route exact path="/search" component={SearchPage} />
+        <PrivateRoute exact path="/pending" component={PendingStudents} />
+        <PrivateRoute exact path="/inactive" component={InactiveStudents} />
+        <PrivateRoute exact path="/active" component={ActiveStudents} />
+        <PrivateRoute exact path="/search" component={SearchPage} />
         <Route path="/" component={LoginPage} />
 
         <Route exact path="/addons" component={AddonsNavPage} />

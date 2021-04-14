@@ -27,5 +27,5 @@ Before you report a bug, please take your time to find if an issue hasn't been r
 
 We're also open to pull requests
 
-## Something Missing?
-If you still have some questions do not hesitate to ask us. Open an issue or [visit our Slack](https://mdbbetatest.slack.com)
+## Check out app
+ [visit App](https://ppf-api.herokuapp.com/)
