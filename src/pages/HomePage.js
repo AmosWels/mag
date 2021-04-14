@@ -46,7 +46,7 @@ class HomePage extends React.Component {
                         alt="mdbreact-logo"
                         className="pr-2"
                       /> */}
-                      Identify, Monitor and aid Growth
+                      Poor People's Foundation Uganda
                     </strong>
                   </h2>
                   <MDBRow />
@@ -103,10 +103,10 @@ class HomePage extends React.Component {
                               brand
                               className="pink-text pr-2"
                             />
-                            <strong>LOVE</strong>
+                            <strong>Vision</strong>
                           </MDBCardTitle>
                           <MDBCardText>
-                            We are driven by love for fellow Ugandans
+                          A Uganda in which all citizens have equal access to formal education, good health care and opportunityso as to assure improved livelihoods.
                           </MDBCardText>
                           <MDBNavLink 
                               tag="button"
@@ -115,7 +115,7 @@ class HomePage extends React.Component {
                               className="btn btn-outline-mdb-color btn-sm btn-rounded d-inline"
                               onClick={this.scrollToTop}
                             >
-                              Love wins
+                              Access
                           </MDBNavLink>
                         </MDBCardBody>
                       </MDBCard>
@@ -132,10 +132,10 @@ class HomePage extends React.Component {
                         <MDBCardBody cascade className="text-center">
                           <MDBCardTitle>
                             <MDBIcon icon="cubes" className="blue-text pr-2" />
-                            <strong>EMPOWER</strong>
+                            <strong>MISSION</strong>
                           </MDBCardTitle>
                           <MDBCardText>
-                            Access to knowledge and resources
+                            To identify, transform and serve individuals in the poorest communities in Uganda by impacting their ethical, moral and mental schools of thought.
                           </MDBCardText>
                           <MDBNavLink 
                               tag="button"
@@ -144,7 +144,7 @@ class HomePage extends React.Component {
                               className="btn btn-outline-mdb-color btn-sm btn-rounded d-inline"
                               onClick={this.scrollToTop}
                             >
-                              Empower to strengthen
+                              UNEARTH
                           </MDBNavLink>
                         </MDBCardBody>
                       </MDBCard>
@@ -161,10 +161,15 @@ class HomePage extends React.Component {
                         <MDBCardBody cascade className="text-center">
                           <MDBCardTitle>
                             <MDBIcon icon="arrows-alt" className="green-text pr-2" />
-                            <strong>PROSPER</strong>
+                            <strong>VALUES</strong>
                           </MDBCardTitle>
                           <MDBCardText>
-                            Seek to see others prosper
+                            {/* <ul> */}
+                            Love<br/>
+                            Integrity<br/>
+                            Excellence<br/>
+                            Decency
+                            {/* </ul> */}
                           </MDBCardText>
 
                           <MDBNavLink 
@@ -174,7 +179,7 @@ class HomePage extends React.Component {
                               className="btn btn-outline-mdb-color btn-sm btn-rounded d-inline"
                               onClick={this.scrollToTop}
                             >
-                              Prosper and Excel
+                              CORE
                           </MDBNavLink>
                         </MDBCardBody>
                       </MDBCard>
